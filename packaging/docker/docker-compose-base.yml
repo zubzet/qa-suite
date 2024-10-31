@@ -1,5 +1,5 @@
 x-config-z-settings: &config-z-settings
-  CONFIG_HOST: http://localhost:4000
+  CONFIG_HOST: http://localhost:8080
   CONFIG_ROOTDIRECTORY: ""
 
   ## Database
@@ -31,20 +31,12 @@ x-built-application-image: &built-application-image
       condition: service_healthy
 
 services:
-  # Reverse Proxy
-  proxy:
-    image: harbor.zierhut-it.de/hub.docker.com/library/caddy:2.7.5
-    restart: on-failure
-    volumes:
-      - ../Caddyfile:/etc/caddy/Caddyfile
-    ports:
-      - 8080:80
-      - 4000:80
-
   # Application
   application:
     container_name: application
     <<: *built-application-image
+    ports:
+      - 8080:8080
 
   # Backend Services
   database:

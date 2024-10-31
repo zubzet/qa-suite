@@ -5,15 +5,13 @@
       "version": "8.0",
       "installComposer": true
     },
-    "ghcr.io/schlich/devcontainer-features/cypress:1": {},
-    "ghcr.io/devcontainers/features/desktop-lite:1": {}
+    "ghcr.io/schlich/devcontainer-features/cypress:1": {}
   },
   "postCreateCommand": "npm install && composer install && npm run start",
-  "forwardPorts": [4000, 8081, 3300, 6000, 5901],
+  "forwardPorts": [8080, 8081, 3300],
   "portsAttributes": {
     "4000": {"label": "ZubZet Application"},
     "8081": {"label": "phpMyAdmin"},
-    "3000": {"label": "Mailer"},
-    "6000": {"label": "Desktop (Cypress)"}
+    "3300": {"label": "Mailer"}
   }
 }

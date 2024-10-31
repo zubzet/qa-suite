@@ -1,4 +1,0 @@
-http://localhost {
-    ## application
-    reverse_proxy application:8080
-}

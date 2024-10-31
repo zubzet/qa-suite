@@ -1,0 +1,15 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/npm:1": {},
+    "ghcr.io/devcontainers/features/docker-compose:1": {},
+    "ghcr.io/devcontainers/features/php:1": {
+      "version": "8.0"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/composer:1": {}
+  },
+  "initializeCommand": "sudo apt-get update && sudo apt-get install -y xvfb",
+  "postCreateCommand": "npm install && composer install && npm run start",
+  "forwardPorts": [8081, 4000, 3300]
+}

@@ -10,8 +10,7 @@
                 "de",
                 [
                     "custom_value" => "TestValue"
-                ],
-                "rendering/mail_layout.php"
+                ]
             );
         }
 
@@ -24,6 +23,19 @@
                     "custom_value" => "TestValue"
                 ],
                 "rendering/mail_layout.php"
+            );
+        }
+
+        public function action_maillayout(Request $req, Response $res) {
+            $res->sendEmail(
+                "admin@zierhut-it.de",
+                "TestEmail",
+                "rendering/testmail.php",
+                "de",
+                [
+                    "custom_value" => "TestValue"
+                ],
+                "rendering/mail_layout"
             );
         }
 

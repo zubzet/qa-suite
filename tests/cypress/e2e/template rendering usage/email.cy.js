@@ -13,6 +13,7 @@ describe('Sending EMails', () => {
         cy.get(".pad").contains("TestEmail");
         cy.get("#tab-2").first().click();
         cy.get(".ace_editor").contains("This is an test email");
+        cy.get(".ace_editor").contains("MailLayout");
     });
 
     it('Send EMail to User', () =>  {
@@ -27,4 +28,16 @@ describe('Sending EMails', () => {
         cy.get(".ace_editor").contains("This is an test email");
     });
 
+    it('Send EMail Layout', () => {
+        cy.visit("/rendering/maillayout");
+        cy.visit("http://localhost:3300/");
+        cy.get(".unread").first().click();
+
+        cy.get(".pad").contains("admin@zierhut-it.de");
+        cy.get(".pad").contains("QA Suite");
+        cy.get(".pad").contains("TestEmail");
+        cy.get("#tab-2").first().click();
+        cy.get(".ace_editor").contains("This is an test email");
+        cy.get(".ace_editor").contains("Custom Layout Template");
+    });
 });

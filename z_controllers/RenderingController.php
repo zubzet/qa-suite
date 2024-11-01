@@ -16,7 +16,15 @@
         }
 
         public function action_mailuser(Request $req, Response $res) {
-            
+            $res->sendEmailToUser(
+                3,
+                "TestEmail",
+                "rendering/testmail.php",
+                [
+                    "custom_value" => "TestValue"
+                ],
+                "rendering/mail_layout.php"
+            );
         }
 
     }

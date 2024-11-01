@@ -2,7 +2,7 @@
 
     class RenderingController extends z_controller {
 
-        public function action_mail(Request $req, Response $res) { //TODO Einrichten
+        public function action_mail(Request $req, Response $res) {
             $res->sendEmail(
                 "admin@zierhut-it.de",
                 "TestEmail",

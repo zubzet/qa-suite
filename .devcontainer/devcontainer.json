@@ -4,9 +4,9 @@
     "ghcr.io/devcontainers/features/php:1": {
       "version": "8.0",
       "installComposer": true
-    },
-    "ghcr.io/schlich/devcontainer-features/cypress:1": {}
+    }
   },
+  "initializeCommand": "sudo apt-get update && sudo apt-get install -y xvfb",
   "postCreateCommand": "npm install && composer install && npm run start",
   "forwardPorts": [8080, 8081, 3300],
   "portsAttributes": {

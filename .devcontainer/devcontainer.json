@@ -1,7 +1,7 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/devcontainers/features/php:1": {
+    "ghcr.io/shyim/devcontainers-features/php:0": {
       "version": "8.0",
       "installComposer": true
     }

@@ -6,6 +6,7 @@
             <?php $head($opt); ?>
         </head>
         <body id="top" data-test="dashboard-top">
+            <h2>Default Layout</h2>
             <div class="container py-5">
                 <?php $body($opt); ?>
             </div>

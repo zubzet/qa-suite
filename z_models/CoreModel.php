@@ -41,6 +41,18 @@
                     VALUES ('LastId')";
             return $this->exec($sql)->getInsertId();
         }
+
+        public function getDatabase() {
+            $sql = "SELECT * 
+                    FROM `model_test_database`";
+            return $this->exec($sql)->resultToArray();
+        }
+
+        public function getDatabaseInsertOrUpdate() {
+            $sql = "SELECT * 
+                    FROM `model_test_insertorupdate`";
+            return $this->exec($sql)->resultToArray();
+        }
     } 
 
 ?>

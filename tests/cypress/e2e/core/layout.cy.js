@@ -3,6 +3,11 @@ describe('Layout', () => {
         cy.dbSeed();
     });
 
+    it('Default Layout', () => {
+        cy.visit("/Core/render");
+        cy.contains("Default Layout");
+    });
+
     it('Layout', () => {
         cy.visit("/Core/Renderlayout");
         cy.contains("New Layout");

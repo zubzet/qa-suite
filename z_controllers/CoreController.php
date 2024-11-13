@@ -90,6 +90,119 @@
             echo ($res->getBooterSettings("custom_value"));
         }
 
+        public function action_insertdatabase(Request $req, Response $res) {
+            if($req->hasFormData()) {
+                $formResult = $req->validateForm([
+                    (new FormField("value")),
+                ]);
+
+                if($formResult->hasErrors) {
+                    return $res->formErrors($formResult->errors);
+                }
+
+                $res->insertDatabase(
+                    "model_test_database",
+                    $formResult,
+                    [
+                        "fixed" => ":)"
+                    ]
+                );
+
+                return $res->success();
+            }
+
+            return $res->render("core/database.php", [
+                "values" => $req->getModel("Core")->getDatabase()
+            ]);
+        }
+
+        public function action_updatedatabase(Request $req, Response $res) {
+            if($req->hasFormData()) {
+                $formResult = $req->validateForm([
+                    (new FormField("value")),
+                ]);
+
+                if($formResult->hasErrors) {
+                    return $res->formErrors($formResult->errors);
+                }
+
+                $res->updateDatabase(
+                    "model_test_database",
+                    "id",
+                    "i",
+                    1,
+                    $formResult,
+                    [
+                        "fixed" => ":)"
+                    ]
+                );
+
+                return $res->success();
+            }
+
+            return $res->render("core/database.php", [
+                "values" => $req->getModel("Core")->getDatabase()
+            ]);
+        }
+
+        public function action_insertorupdateinsert(Request $req, Response $res) {
+            if($req->hasFormData()) {
+                $formResult = $req->validateForm([
+                    (new FormField("value")),
+                ]);
+
+                if($formResult->hasErrors) {
+                    return $res->formErrors($formResult->errors);
+                }
+
+                $res->insertOrUpdateDatabase(
+                    "model_test_insertorupdate",
+                    "id",
+                    "i",
+                    5,
+                    $formResult,
+                    [
+                        "fixed" => ":)"
+                    ]
+                );
+
+                return $res->success();
+            }
+
+            return $res->render("core/database.php", [
+                "values" => $req->getModel("Core")->getDatabaseInsertOrUpdate()
+            ]);
+        }
+
+        public function action_insertorupdateupdate(Request $req, Response $res) {
+            if($req->hasFormData()) {
+                $formResult = $req->validateForm([
+                    (new FormField("value")),
+                ]);
+
+                if($formResult->hasErrors) {
+                    return $res->formErrors($formResult->errors);
+                }
+
+                $res->insertOrUpdateDatabase(
+                    "model_test_insertorupdate",
+                    "id",
+                    "i",
+                    1,
+                    $formResult,
+                    [
+                        "fixed" => ":)"
+                    ]
+                );
+
+                return $res->success();
+            }
+
+            return $res->render("core/database.php", [
+                "values" => $req->getModel("Core")->getDatabaseInsertOrUpdate()
+            ]);
+        }
+
         public function action_rest(Request $req, Response $res) {
             $res->generateRest([
                 "Response" => "Test"
@@ -123,6 +236,20 @@
 
         public function action_cookieunset(Request $req, Response $res) {
             $res->unsetCookie("testCookie");
+        }
+
+        public function action_rootrequest(Request $req, Response $res) {
+            if($req->isAction("normal")) {
+                echo(":) " . $req->getPost("abc"));
+                return;
+            }
+
+            if($req->isAction("parse")) {
+                $res->success([
+                    "test"=>"abc"
+                ]);
+                return;
+            }
         }
 
     }

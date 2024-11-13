@@ -27,3 +27,21 @@ CREATE TABLE `model_test_lastid` (
     `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     `value` VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE `model_test_database` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    `value` VARCHAR(255) NOT NULL,
+    `fixed` VARCHAR(255) NOT NULL
+);
+
+INSERT INTO `model_test_database` (`value`, `fixed`) VALUES
+('TestValue', 'FixedValue');
+
+CREATE TABLE `model_test_insertorupdate` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    `value` VARCHAR(255) NOT NULL,
+    `fixed` VARCHAR(255) NOT NULL
+);
+
+INSERT INTO `model_test_insertorupdate` (`value`, `fixed`) VALUES
+('TestValue', 'FixedValue');

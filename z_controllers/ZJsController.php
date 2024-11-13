@@ -11,7 +11,19 @@
         }
 
         public function action_request(Request $req, Response $res) { 
+            if ($req->isAction("request")) {
+                $param = $req->getPost("parameter");
+
+                return $res->success([
+                    "request" => "YUHU " . $param
+                ]);
+            }
+
             return $res->render("zjs/request.php");
+        }
+
+        public function action_formcompare(Request $req, Response $res) {
+            return $res->render("zjs/form_compare.php");
         }
     }
 ?>

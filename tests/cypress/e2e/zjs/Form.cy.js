@@ -52,6 +52,73 @@ describe('Z.Js Form', () => {
         cy.get("#form-html").contains("Custom HTML");
 
         cy.get("#form-button button").contains(":(");
+
+        cy.get("#form-seperator").within(() => {
+            cy.get("hr");
+        });
+
+        cy.get("#form-variables-value").contains("Value");
+
+        cy.get("#form-parent-hide").within(() => {
+            cy.get("input").parent().should("not.be.visible");
+        });
+
+        cy.get("#form-current-row-length").within(() => {
+            cy.get(".form-group").should("have.length", 3)
+        });
+
+        cy.get("#form-eventlistener-input").click();
+        cy.get("#form-eventlistener-item").contains("Teest");
+
+        cy.get("#form-hint").within(() => {
+            cy.get(".alert").should('have.class', 'alert-danger');
+            cy.contains("Test");
+        });
+
+        cy.get("#form-unhint").within(() => {
+            cy.get(".alert").should('have.class', 'alert-danger').should("not.visible");
+            cy.contains("Test");
+        });
+
+
+        cy.get("#form-actionbutton").within(() => {
+            cy.get(".btn-danger").click()
+        });
+
+        cy.get("#form-actionbutton-text").contains("Changed");
+
+
+        cy.get("#form-autocomplete").within(() => {
+            cy.get("input[name=autocomplete]").click().type("He");
+            cy.get("button[type=button]").contains('Hehe').click();
+
+            cy.get("input[name=autocomplete]").click().type("H");
+            cy.get("button[type=button]").contains("Heheheha");
+            cy.get("button[type=button]").contains('Hehe').click();
+
+            cy.get("input[name=autocomplete]").should("have.value", "Hehe")
+        });
+
+        cy.get("#form-autocomplete").within(() => {
+            cy.get("input[name=autocomplete]").click().clear();
+            cy.get("input[name=autocomplete]").click().type("Hehe");
+            cy.get("button[type=button]").should("have.class", "text-primary");
+        });
+
+        cy.get("#form-autocomplete").within(() => {
+            cy.get("input[name=autocomplete]").click().clear();
+            cy.get("input[name=autocomplete]").click().type("ABC");
+            cy.get("button[type=button]").should("not.exist");
+        });
+    });
+
+    it("Form compare", () => {
+        cy.visit("/ZJs/formcompare");
+        cy.fixture('standard_html.html').then((expectedHtml) => {
+            cy.get('#form').invoke('html').then((actualHtml) => {
+                expect(actualHtml).to.equal(expectedHtml);
+            });
+        });
     });
 
 });
